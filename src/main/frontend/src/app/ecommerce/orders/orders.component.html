@@ -1,0 +1,63 @@
+<!-- <h2 class="text-center">ORDER</h2>
+<ul>
+  <li *ngFor="let order of orders.productOrders">
+    {{ order.product.name }} - ${{ order.product.price }} x {{ order.quantity}} pcs.
+  </li>
+</ul>
+<h3 class="text-right">Total amount: ${{ total }}</h3>
+
+<button class="btn btn-primary btn-block" (click)="pay()" *ngIf="!paid">Pay</button>
+
+<div class="alert alert-success" role="alert" *ngIf="paid">
+  <strong>Congratulation!</strong> You successfully made the order.
+</div> -->
+
+<div class="card">
+  <header class="card-header">
+    <h4 class="card-title mt-2">Order Summary</h4>
+  </header>
+  <table class="table table-hover shopping-cart-wrap">
+    <thead class="text-muted">
+      <tr>
+        <th scope="col">Product</th>
+        <th scope="col" width="0">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders.productOrders">
+        <td>
+          <figure class="media">
+            <div class="img-wrap"><img src={{order.product.pictureUrl}} class="img-thumbnail img-sm"></div>
+            <figcaption class="media-body">
+              <h6 class="title text-truncate">{{ order.quantity }} × {{ order.product.name }}</h6>
+              <dl class="dlist-inline small" *ngIf="order.size !== 'N/A'">
+                <dt style="padding-right: 5px;">Size:</dt>
+                <dd>{{ order.size }}</dd>
+              </dl>
+              <dl class="dlist-inline small">
+                <dt style="padding-right: 5px;">Colour:</dt>
+                <dd>{{ order.product.colour }}</dd>
+              </dl>
+            </figcaption>
+          </figure>
+        </td>
+        <td>
+          <div class="price-wrap">
+            <var class="price">€{{ order.product.price * order.quantity }}</var>
+            <small class="text-muted" *ngIf="(order.quantity > 1)">(€{{ order.product.price }} each)</small>
+          </div> <!-- price-wrap .// -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="box">
+        <dl class="dlist-align">
+          <dt>Delivery</dt>
+          <dd class="text-right">Free</dd>
+        </dl>
+        <dl class="dlist-align">
+          <dt>Payment Total </dt>
+          <dd class="text-right h5 b">€{{ total }}</dd>
+        </dl>
+    </div>
+</div>

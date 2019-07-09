@@ -1,0 +1,83 @@
+<form role="form" [formGroup]="stripeTest" (ngSubmit)="checkout()" *ngIf="!paymentFinished">
+  <!-- Billing -->
+  <div class="card">
+    <header class="card-header">
+      <h4 class="card-title mt-2">Billing</h4>
+    </header>
+    <article class="card-body">
+        <div class="form-row">
+          <div class="col form-group">
+            <label>First name</label>
+            <input type="text" class="form-control" formControlName="fname" placeholder="" [ngClass]="{'is-invalid' : (fname.invalid && (fname.dirty || fname.touched)) }">
+          </div>
+          <div class="col form-group">
+            <label>Last name</label>
+            <input type="text" class="form-control" formControlName="lname" placeholder="" [ngClass]="{'is-invalid' : (lname.invalid && (lname.dirty || lname.touched)) }">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="" [ngClass]="{'is-invalid' : (email.invalid && (email.dirty || email.touched)) }">
+          <small class="form-text text-muted">You will receive a confirmation email.</small>
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input type="text" class="form-control" formControlName="address" placeholder="" [ngClass]="{'is-invalid' : (address.invalid && (address.dirty || address.touched)) }">
+        </div>
+        <div class="form-group">
+          <label>City</label>
+          <input type="text" class="form-control" formControlName="city" placeholder="" [ngClass]="{'is-invalid' : (city.invalid && (city.dirty || city.touched)) }">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Country</label>
+            <select id="inputState" class="form-control" formControlName="country" [ngClass]="{'is-invalid' : (country.invalid && (country.dirty || country.touched)) }">
+              <option>Canada</option>
+              <option>Hong Kong</option>
+              <option selected="">Ireland</option>
+              <option>Japan</option>
+              <option>United States</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Zip/Postal Code</label>
+            <input type="text" class="form-control" formControlName="zip" [ngClass]="{'is-invalid' : (zip.invalid && (zip.dirty || zip.touched)) }">
+          </div>
+        </div>
+      
+    </article>
+  </div>
+  <!-- Payment -->
+  <article class="card" style="margin-top: 1em;">
+    <header class="card-header">
+      <h4 class="card-title mt-2">Payment</h4>
+    </header>
+    <div class="alert" role="alert" *ngIf="isError" [ngClass]="{'alert-danger' : (errorStatus === '500'), 'alert-warning' : (errorStatus !== '500')}">
+      <i class="icon ion-md-warning"></i> <strong style="margin-left: 5px">Error {{ errorStatus }}</strong>
+      <p>{{ errorMessage }}</p>
+    </div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="cardNumber">Card number</label>
+        <div class="input-group">
+          <div type="text" class="form-control" name="cardNumber" placeholder=""
+            style="border-right: none; padding: 0px  0px  0px 10px;" id="card-element"></div>
+          <div class="input-group-append">
+            <span class="input-group-text" style="border-left: none; background-color: #fff;">
+              <img src="https://img.icons8.com/color/48/000000/visa.png" class="payment-card">
+              <img src="https://img.icons8.com/color/48/000000/mastercard.png" class="payment-card">
+              <img src="https://img.icons8.com/color/48/000000/amex.png" class="payment-card">
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <button class="subscribe btn btn-success btn-block" type="submit" [disabled]="isProcessing">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="isProcessing"></span>
+        <span *ngIf="!isProcessing">Place Order</span>
+      </button>
+    </div>
+  </article>
+</form>
+<!-- Success -->
+<app-success *ngIf="paymentFinished" [formModel]="formModel"></app-success>

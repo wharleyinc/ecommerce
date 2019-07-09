@@ -1,0 +1,27 @@
+<div class="container" style="padding-top: 1em;">
+        <div id="stepper1" class="bs-stepper">
+          <div class="bs-stepper-header">
+            <div class="step">
+              <button class="step-trigger" (click)="returnToStore()" [disabled]="shopDisabled">
+                <span class="bs-stepper-circle" [ngClass]="{'stepper-active' : (step === 1) }">1</span>
+                <span class="bs-stepper-label" [ngClass]="{'stepper-text-active' : (step === 1) }">Store</span>
+              </button>
+            </div>
+            <div class="line"></div>
+            <div class="step">
+              <button class="step-trigger" (click)="returnToCheckout()" [disabled]="!checkoutVisited">
+                <span class="bs-stepper-circle" [ngClass]="{'stepper-active' : (step === 2) }">2</span>
+                <span class="bs-stepper-label" [ngClass]="{'stepper-text-active' : (step === 2) }">Checkout</span>
+              </button>
+            </div>
+            <div class="line"></div>
+            <div class="step">
+              <button class="step-trigger" [disabled]="step !== 4">
+                <span class="bs-stepper-circle" [ngClass]="{'stepper-active' : (step === 4) }">3</span>
+                <span class="bs-stepper-label" [ngClass]="{'stepper-text-active' : (step === 4) }">Confirmation</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      

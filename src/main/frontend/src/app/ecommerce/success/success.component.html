@@ -1,0 +1,17 @@
+<section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center">
+                    <i class="icon ion-md-checkmark-circle-outline" style="font-size: 64px; color: #4CAF50"></i>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                    <h2 class="title-doc">Thank you for your purchase!</h2>
+                    <p>You will receive an order confirmation email at <strong>{{ formModel.email }}</strong> with details of your order.</p>
+                    <p>Your order # is: <strong>{{ formModel.id }}</strong></p>
+                    <a class="btn btn-primary" style="margin-top: 6em; color: #fff" (click)="refresh()"> <i class="fas fa-shopping-cart"></i> Continue Shopping </a>
+            </div>
+        </div>
+    </div>
+</section>

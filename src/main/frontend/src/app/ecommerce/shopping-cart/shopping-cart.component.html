@@ -1,0 +1,80 @@
+<!-- <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+    <div class="card-header text-center">Shopping Cart</div>
+    <div class="card-body">
+        <p>Shopping-cart component</p>
+        <h5 class="card-title">Total: ${{total}}</h5>
+        <hr>
+        <h6 class="card-title">Items bought:</h6>
+
+        <ul>
+            <li *ngFor="let order of orders.productOrders">
+                {{ order.product.name }} - {{ order.quantity}} pcs.
+            </li>
+        </ul>
+
+        <button class="btn btn-light btn-block" (click)="finishOrder()"
+                [disabled]="orders.productOrders.length == 0">Checkout
+        </button>
+    </div>
+</div> -->
+
+<div *ngIf="!(orders.productOrders.length == 0)" style="padding-bottom: 50px;" id="shoppingCart">
+    <h2 class="title-doc">Your Order</h2>
+    <div class="card" #shoppingCart>
+            <table class="table table-hover shopping-cart-wrap">
+              <thead class="text-muted">
+                <tr>
+                  <th scope="col">Product</th>
+                  <th scope="col" width="120">Quantity</th>
+                  <th scope="col" width="120">Price</th>
+                  <th scope="col" width="200" class="text-right"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders.productOrders">
+                  <td>
+                    <figure class="media">
+                      <div class="img-wrap"><img src={{order.product.pictureUrl}} class="img-thumbnail img-sm"></div>
+                      <figcaption class="media-body">
+                        <h6 class="title text-truncate"> {{ order.product.name }} </h6>
+                        <dl class="dlist-inline small" *ngIf="order.size !== 'N/A'">
+                          <dt style="padding-right: 5px;">Size:</dt>
+                          <dd>{{ order.size }}</dd>
+                        </dl>
+                        <dl class="dlist-inline small">
+                          <dt style="padding-right: 5px;">Colour:</dt>
+                          <dd>{{ order.product.colour }}</dd>
+                        </dl>
+                      </figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                      <span> {{ order.quantity}} </span>
+                  </td>
+                  <td>
+                    <div class="price-wrap">
+                      <var class="price">€{{ order.product.price * order.quantity }}</var>
+                      <small class="text-muted" *ngIf="(order.quantity > 1)">(€{{ order.product.price }} each)</small>
+                    </div> <!-- price-wrap .// -->
+                  </td>
+                  <td class="text-right">
+                    <a class="btn btn-outline-danger" (click)="removeFromCart(order)" style="color: #dc3545; border-radius: 25px;"> × Remove </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="box">
+              <dl class="dlist-align">
+                  <dt>Total cost: </dt>
+                  <dd class="text-right h5 b" > €{{total}} </dd>
+              </dl>
+              <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <button class="btn btn-primary btn-block" (click)="finishOrder()" [disabled]="orders.productOrders.length == 0">Proceed to Checkout</button>
+                </div>
+              </div>
+              </div>
+          </div>
+</div>
+
+

@@ -1,0 +1,153 @@
+<!-- <div class="row card-deck">
+  <div class="col-lg-4 col-md-6 mb-4" *ngFor="let order of productOrders">
+    <div class="card text-center">
+      <div class="card-header">
+        <h4>{{order.product.name}}</h4>
+      </div>
+      <div class="card-body">
+        <a href="#"><img class="card-img-top" src={{order.product.pictureUrl}} alt=""></a>
+        <h5 class="card-title">${{order.product.price}}</h5>
+        <div class="row">
+          <div class="col-4 padding-0" *ngIf="!isProductSelected(order.product)">
+            <input type="number" min="0" class="form-control" [(ngModel)]=order.quantity>
+          </div>
+          <div class="col-4 padding-0" *ngIf="!isProductSelected(order.product)">
+            <button class="btn btn-primary" (click)="addToCart(order)" [disabled]="order.quantity <= 0">Add To Cart
+            </button>
+          </div>
+          <div class="col-12" *ngIf="isProductSelected(order.product)">
+            <button class="btn btn-primary btn-block" (click)="removeFromCart(order)">Remove From Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="row card-deck" style="">
+  <div class="col-lg-12 col-md-6 mb-4" *ngFor="let order of productOrders">
+
+    <div class="card">
+      <div class="row no-gutters">
+        <aside class="col-sm-5 justify-content-center border-right">
+          <article class="gallery-wrap">
+            <div class="img-big-wrap">
+              <img style="" src={{order.product.pictureUrl}}>
+            </div>
+          </article>
+          
+        </aside>
+        <aside class="col-sm-7">
+          <article class="p-5">
+            <h3 class="title mb-3">{{ order.product.name }}</h3>
+            <div class="mb-3">
+              <var class="price h3" style="color: #F57C00">
+                <span class="currency">€</span><span class="num">{{ order.product.price }}</span>
+              </var>
+              <span></span>
+            </div> <!-- price-detail-wrap .// -->
+            <dl>
+              <dt>Description</dt>
+              <dd>
+                <p>{{ order.product.description }}</p>
+              </dd>
+            </dl>
+            <dl class="row">
+              <dt class="col-sm-3">Model#</dt>
+              <dd class="col-sm-9">{{ order.product.id }}</dd>
+
+              <dt class="col-sm-3">Brand</dt>
+              <dd class="col-sm-9">{{ order.product.brand }}</dd>
+
+              <dt class="col-sm-3">Colour</dt>
+              <dd class="col-sm-9">{{ order.product.colour }}</dd>
+
+            </dl>
+            <div class="rating-wrap">
+
+              <ul class="rating-stars" style="padding-right: 10px;">
+                <li style="width:80%" class="stars-active">
+                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </li>
+                <li>
+                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </li>
+              </ul>
+              <div class="label-rating">132 reviews</div>
+            </div> <!-- rating-wrap.// -->
+            <hr>
+            <div class="row">
+              
+              <div class="col-sm-5">
+                <dl class="dlist-inline">
+                  <dt style="padding-right: 10px;">Quantity: </dt>
+                  <dd>
+                    <select class="form-control form-control-sm" style="width:70px;" [(ngModel)]=order.quantity>
+                      <option selected="selected" [value]=1> 1 </option>
+                      <option [value]=2> 2 </option>
+                      <option [value]=3> 3 </option>
+                    </select>
+                  </dd>
+                </dl> <!-- item-property .// -->
+              </div> <!-- col.// -->
+              <div class="col-sm-7" *ngIf="order.product.category === 'CLOTHES'">
+                <dl class="dlist-inline">
+                  <dt style="padding-right: 10px;">Size: </dt>
+                  <dd>
+                    <form>
+                        <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                              value="SM" [(ngModel)]=order.size [ngClass]="{'is-invalid' : isInvalid }">
+                            <span class="form-check-label">SM</span>
+                          </label>
+                          <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                            value="MD" [(ngModel)]=order.size [ngClass]="{'is-invalid' : isInvalid }">
+                            <span class="form-check-label">MD</span>
+                          </label>
+                          <label class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                            value="LG" [(ngModel)]=order.size [ngClass]="{'is-invalid' : isInvalid }">
+                            <span class="form-check-label">LG</span>
+                          </label>
+                    </form>
+                  </dd>
+                </dl>
+              </div>
+
+              <div class="col-sm-7" *ngIf="order.product.category === 'SHOES'">
+                  <div class="invalid-feedback" *ngIf="isInvalid">Please select a size.</div>
+                  <dl class="dlist-inline">
+                    <dt style="padding-right: 10px;">Size:</dt>
+                    <dd>
+                      <select class="form-control form-control-sm" style="width:80px;"
+                        [ngClass]="{'is-invalid' : isInvalid }" [(ngModel)]=order.size>
+                        <option selected="selected" [value]=9>9</option>
+                        <option [value]=9.5>9.5</option>
+                        <option [value]=10>10</option>
+                        <option [value]=10.5>10.5</option>
+                        <option [value]=11>11</option>
+                        <option [value]=11.5>11.5</option>
+                        <option [value]=12>12</option>
+                      </select>
+                    </dd>
+                  </dl>
+                </div>
+              
+            </div>
+            <hr>
+            <a class="btn btn-primary" style="margin-right: 10px; color: #fff" (click)="addToCartAndFinishOrder(order)"> Buy now </a>
+            <a class="btn btn-outline-primary" (click)="addToCart(order)" style="color: #007bff"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
+          </article>
+        </aside>
+      </div>
+    </div>
+  </div>
+  <div #divToScroll></div>
+</div>
+
