@@ -4,8 +4,14 @@ The goal of this project is to implement an extensive e-commerce application tha
 ## 2. Live Demo
 [http://ecommerce-demo-boris.herokuapp.com](http://ecommerce-demo-boris.herokuapp.com) - Note: Application might take a while to load since it is being hosted on Heroku's free tier.
 
-## 3. Video Demo
-Coming Soon
+## 3. Images
+![Product](https://i.imgur.com/LmYt5eA.png)
+![Cart](https://i.imgur.com/vTckAkU.png)
+![Checkout](https://i.imgur.com/JXJtInl.png)
+
+### Dashboard (Work In Progress)
+
+![Dashboard](https://i.imgur.com/CFUgcCe.png)
 
 ## 4. Building the Application
 
