@@ -9,7 +9,7 @@ The goal of this project is to implement an extensive e-commerce application tha
 ![Cart](https://i.imgur.com/vTckAkU.png)
 ![Checkout](https://i.imgur.com/JXJtInl.png)
 
-### Dashboard (Work In Progress)
+### Dashboard built with React, Redux, JWT, and Material UI ([Visit Repository](https://github.com/borisrch/ecommerce-dashboard-react))
 
 ![Dashboard](https://i.imgur.com/CFUgcCe.png)
 
